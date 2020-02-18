@@ -13,6 +13,7 @@ class AddSubscriptionsAndEvents < ActiveRecord::Migration[6.0]
     end
 
     create_table(:subscriptions) do |t|
+      t.boolean :donated, default: false
       t.belongs_to :user
       t.belongs_to :event
       t.timestamps
