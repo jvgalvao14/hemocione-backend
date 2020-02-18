@@ -1,7 +1,7 @@
 class AddRoles < ActiveRecord::Migration[6.0]
-  def change
+  def up
     create_table(:roles) do |t|
-      t.string 'name'
+      t.string :name
       t.timestamps
     end
 
@@ -12,5 +12,10 @@ class AddRoles < ActiveRecord::Migration[6.0]
     end
 
     add_index :roles, :name, unique: true
+  end
+
+  def down
+    drop_table :roles
+    drop_table :user_roles
   end
 end
