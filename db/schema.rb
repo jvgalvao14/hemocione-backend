@@ -30,13 +30,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_210934) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_roles_on_name", unique: true
-  end
-
   create_table "subscriptions", force: :cascade do |t|
     t.boolean "donated", default: false
     t.bigint "user_id"
@@ -45,15 +38,6 @@ ActiveRecord::Schema.define(version: 2020_02_17_210934) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_subscriptions_on_event_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
-  end
-
-  create_table "user_roles", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "role_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["role_id"], name: "index_user_roles_on_role_id"
-    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
