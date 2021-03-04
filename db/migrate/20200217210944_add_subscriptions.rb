@@ -4,7 +4,7 @@ class AddSubscriptions < ActiveRecord::Migration[6.0]
       t.boolean :donated, default: false
       t.belongs_to :user
       t.belongs_to :event
-      t.has_one :reservation
+      t.references :reservation
       t.timestamps
     end
   end
