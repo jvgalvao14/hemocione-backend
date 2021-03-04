@@ -1,0 +1,1 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/5454c2b600e914982b4e/maintainability)](https://codeclimate.com/github/Hemocione/hemocione-backend/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/5454c2b600e914982b4e/test_coverage)](https://codeclimate.com/github/Hemocione/hemocione-backend/test_coverage)
