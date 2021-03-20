@@ -16,11 +16,14 @@ gem 'devise_token_auth', '~> 1.1.3'
 gem 'omniauth', '~> 1.9.0'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
   gem 'rspec-rails', '~> 4.0.2'
 end
 
 group :development do
+  gem 'rubocop', '0.93.1'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
