@@ -13,4 +13,4 @@ AllCops:
 
 Metrics/BlockLength:
   ExcludedMethods:
-    ["describe", "context", "FactoryGirl.define", "configure", "factory"]
+    ["describe", "context", "FactoryBot.define", "configure", "factory"]
