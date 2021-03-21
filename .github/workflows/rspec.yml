@@ -1,0 +1,79 @@
+name: Rails
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  verify:
+    name: Rspec
+    runs-on: ubuntu-latest
+
+    services:
+      maria_db:
+        image: mariadb:10.5
+        env:
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: hemocione
+          MYSQL_USER: user
+          MYSQL_PASSWORD: changeme
+        ports: 
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=10s
+          --health-retries=10
+
+      mongo_db:
+        image: mongo:4.4.4
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: rootpassword
+        ports:
+          - 27017:27017
+
+      redis:
+        image: redis:5
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get -yqq install libpq-dev build-essential libcurl4-openssl-dev
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Setup test database
+        env:
+          RAILS_ENV: test
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: hemocione
+          MYSQL_USER: user
+          MYSQL_PASSWORD: changeme
+          MONGO_USERNAME: root
+          MONGO_PASSWORD: rootpassword
+          DB_PORT: ${{ job.services.maria_db.ports[3306] }}
+        run: |
+          cp config/database.ci.yml config/database.yml
+          cp config/mongoid.ci.yml config/mongoid.yml
+          bundle exec rake db:setup
+
+      - name: Run tests
+        env:
+          MYSQL_ROOT_PASSWORD: changeme
+          MYSQL_DATABASE: hemocione
+          MYSQL_USER: user
+          MYSQL_PASSWORD: changeme
+          MONGO_USERNAME: root
+          MONGO_PASSWORD: rootpassword
+          RAILS_ENV: test
+        run: bundle exec rspec
