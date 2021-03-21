@@ -80,5 +80,5 @@ jobs:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
           coverageCommand: bundle exec rspec --format progress
-          coverageLocations: /home/runner/work/hemocione-backend/hemocione-backend/coverage/.resultset.json:simplecov
+          coverageLocations: coverage/.resultset.json:simplecov
 
