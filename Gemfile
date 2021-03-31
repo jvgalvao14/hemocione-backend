@@ -11,9 +11,10 @@ gem 'mongoid', '~> 7.2.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'mysql2', '~> 0.5.3'
 gem 'puma', '>= 4.3'
-gem 'rails', '>= 6.0.3'
+gem 'rails', '~> 6.0.3'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-attack', '~> 6.5.0'
 gem 'rack-cors', '~> 1.1.1'
 
 gem 'devise', '~> 4.7.1'
