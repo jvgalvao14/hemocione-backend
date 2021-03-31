@@ -2,6 +2,7 @@
 
 require:
   - rubocop-rspec
+  - rubocop-rails
 
 AllCops:
   TargetRubyVersion: 2.5
@@ -12,14 +13,14 @@ AllCops:
     - 'node_modules/**/*'
     - 'lib/brcobranca_sparkpay/**/*'
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Metrics/BlockLength:
   ExcludedMethods:
     ["describe", "context", "FactoryBot.define", "configure", "factory"]
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 121
   Exclude:
     - 'Rakefile'
