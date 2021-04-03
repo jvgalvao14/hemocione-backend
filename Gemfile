@@ -29,7 +29,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 4'
   gem 'database_cleaner', '~> 2'
   gem 'factory_bot', '~> 6'
-  gem 'simplecov', '0.18.1'
+  gem 'simplecov', '0.17'
 end
 
 group :development do
