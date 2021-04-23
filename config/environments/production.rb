@@ -56,7 +56,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
   config.action_mailer.smtp_settings = {
-    username: 'apikey',
+    user_name: 'apikey',
     password: ENV['SENDGRID_APIKEY'],
     domain: ENV['HEMOCIONE_DOMAIN'],
     port: 587,
