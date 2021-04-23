@@ -53,6 +53,8 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "hemocione_backend_production"
 
+  routes.default_url_options[:host] = ENV['HEMOCIONE_DOMAIN']
+
   config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_caching = false
   config.action_mailer.smtp_settings = {
