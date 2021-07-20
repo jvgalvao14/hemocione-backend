@@ -24,7 +24,7 @@
         <p>Seja bem vindo ao Hemocione, <%= @user.name %>! Muito bom ter você aqui :)</p>
       </td></tr>
       <tr><td>
-        <a href=<%="https://d.hemocione.com.br/email_confirmation?confirmation_url=" + confirmation_url(@resource, confirmation_token: @token)%>>
+        <a href=<%= ENV["FRONT_URL"] + "email_confirmation?confirmation_token=" + @token%>>
           <button style="text-decoration: none;
                          background-color: #CD1419;
                          padding: 15px;

@@ -24,7 +24,7 @@
         <p>Olá, <%= @user.name %>! Sua conta foi travada devido a um grande número de tentativas falhas de login.</p>
       </td></tr>
       <tr><td>
-        <a href=<%="https://d.hemocione.com.br/unlock_account?unlock_url=" + unlock_url(@resource, unlock_token: @token)%>>
+        <a href=<%= ENV["FRONT_URL"] + "unlock_account?unlock_token=" + @token%>>
           <button style="text-decoration: none;
                          background-color: #CD1419;
                          padding: 15px;
