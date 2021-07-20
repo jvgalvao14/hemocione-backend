@@ -63,6 +63,7 @@ jobs:
           MONGO_USERNAME: root
           MONGO_PASSWORD: rootpassword
           DB_PORT: ${{ job.services.maria_db.ports[3306] }}
+          FRONT_URL: "https://test.hemocione.com.br/"
         run: |
           cp config/database.ci.yml config/database.yml
           cp config/mongoid.ci.yml config/mongoid.yml
