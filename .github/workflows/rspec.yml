@@ -79,4 +79,5 @@ jobs:
           MONGO_PASSWORD: rootpassword
           RAILS_ENV: test
           DEVISE_JWT_SECRET_KEY: ${{ secrets.DEVISE_JWT_SECRET_KEY }}
+          FRONT_URL: "https://test.hemocione.com.br/"
         run: bundle exec rspec
