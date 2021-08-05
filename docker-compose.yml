@@ -48,6 +48,7 @@ services:
       - mongo_db
       - inbucket
     environment:
+      FRONT_URL: https://www.hemocione.com.br/ 
       MYSQL_ROOT_PASSWORD: changeme
       MYSQL_DATABASE: hemocione
       MYSQL_USER: root
