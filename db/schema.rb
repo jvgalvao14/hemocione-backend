@@ -10,15 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_034352) do
+ActiveRecord::Schema.define(version: 2021_08_12_224443) do
+
+  create_table "actions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "event_id"
+    t.bigint "user_id"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_actions_on_event_id"
+    t.index ["user_id"], name: "index_actions_on_user_id"
+  end
+
+  create_table "entity_adresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "address_uuid"
+    t.bigint "entity_id"
+    t.string "type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["entity_id"], name: "index_entity_adresses_on_entity_id"
+  end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
     t.string "type"
-    t.datetime "date"
     t.bigint "institution_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.text "description"
     t.index ["institution_id"], name: "index_events_on_institution_id"
   end
 
@@ -33,6 +54,8 @@ ActiveRecord::Schema.define(version: 2021_04_04_034352) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "cnpj"
+    t.string "type"
   end
 
   create_table "jwt_denylist", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -50,18 +73,6 @@ ActiveRecord::Schema.define(version: 2021_04_04_034352) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["rated_type", "rated_id"], name: "index_ratings_on_rated_type_and_rated_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
-  end
-
-  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.boolean "donated", default: false
-    t.bigint "user_id"
-    t.bigint "event_id"
-    t.bigint "reservation_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_subscriptions_on_event_id"
-    t.index ["reservation_id"], name: "index_subscriptions_on_reservation_id"
-    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
