@@ -33,10 +33,10 @@ ActiveRecord::Schema.define(version: 2021_08_12_224443) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.string "type"
     t.bigint "institution_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "event_type"
     t.datetime "start_at"
     t.datetime "end_at"
     t.text "description"
