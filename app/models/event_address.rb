@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
-class Subscription < Action
+class EventAddress < EntityAddress
     belongs_to :event
 end
+  

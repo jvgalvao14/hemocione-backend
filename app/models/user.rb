@@ -14,7 +14,8 @@ class User < ApplicationRecord
   validates :document_type, inclusion: { in: %w[CPF CNPJ] }
 
   has_many :subscriptions
-
+  has_many :user_addresses
+  
   private
 
   def setup_document_type
