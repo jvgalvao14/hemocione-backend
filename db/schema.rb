@@ -51,11 +51,14 @@ ActiveRecord::Schema.define(version: 2021_08_12_224443) do
   end
 
   create_table "institutions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "cnpj"
     t.string "type"
+    t.string "fantasy_name"
+    t.string "legal_name"
+    t.index ["cnpj"], name: "index_institutions_on_cnpj", unique: true
+    t.index ["legal_name"], name: "index_institutions_on_legal_name", unique: true
   end
 
   create_table "jwt_denylist", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
