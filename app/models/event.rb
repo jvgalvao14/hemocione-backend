@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
-    has_many :subscriptions
-    has_many :subscribers, through: :subscriptions, foreign_key: "user_id", source: "user"
+    has_many :actions, as: :actionizable
+    has_many :users, through: :actions
     belongs_to :institution
-    has_one :event_address, foreign_key: :entity_id
+    has_one :address, as: :addressable
 
     validates :name, :description, :event_type, :start_at, :end_at, presence: true
     validates :event_type, inclusion: { in: %w[standard dia_hemocione enterprise remoto] }

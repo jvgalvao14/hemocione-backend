@@ -13,8 +13,8 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :document_type, inclusion: { in: %w[CPF CNPJ] }
 
-  has_many :subscriptions
-  has_many :user_addresses
+  has_many :actions
+  has_many :addresses, as: :addressable
   
   private
 

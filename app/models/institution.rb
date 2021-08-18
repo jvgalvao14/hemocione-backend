@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Institution < ApplicationRecord
-    has_many :institution_addresses, foreign_key: :entity_id
+    has_many :addresses, as: :addressable
 
     before_validation :set_cnpj_correctly
 

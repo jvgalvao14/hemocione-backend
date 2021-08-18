@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
     describe 'associations' do
-        it { is_expected.to have_many(:subscriptions) }
-        it { is_expected.to have_many(:subscribers) }
+        it { is_expected.to have_many(:actions) }
+        it { is_expected.to have_many(:users) }
         it { is_expected.to belong_to(:institution) }
-        it { is_expected.to have_one(:event_address) }
+        it { is_expected.to have_one(:address) }
     end
 
     describe 'validations' do

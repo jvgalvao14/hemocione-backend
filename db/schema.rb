@@ -13,22 +13,23 @@
 ActiveRecord::Schema.define(version: 2021_08_12_224443) do
 
   create_table "actions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "event_id"
+    t.string "action_type"
+    t.string "actionizable_type"
+    t.bigint "actionizable_id"
     t.bigint "user_id"
-    t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["event_id"], name: "index_actions_on_event_id"
+    t.index ["actionizable_type", "actionizable_id"], name: "index_actions_on_actionizable_type_and_actionizable_id"
     t.index ["user_id"], name: "index_actions_on_user_id"
   end
 
-  create_table "entity_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "address_uuid"
-    t.bigint "entity_id"
-    t.string "type"
+    t.string "addressable_type"
+    t.bigint "addressable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["entity_id"], name: "index_entity_addresses_on_entity_id"
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id"
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_08_12_224443) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "cnpj"
-    t.string "type"
+    t.string "institution_type"
     t.string "fantasy_name"
     t.string "legal_name"
     t.index ["cnpj"], name: "index_institutions_on_cnpj", unique: true

@@ -1,9 +1,9 @@
 class CreateActions < ActiveRecord::Migration[6.0]
   def change
     create_table :actions do |t|
-      t.references :event
-      t.references :user
-      t.string :type
+      t.string :action_type
+      t.references :actionizable, polymorphic: true
+      t.belongs_to :user
       t.timestamps
     end
   end

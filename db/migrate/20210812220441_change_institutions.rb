@@ -3,7 +3,7 @@ class ChangeInstitutions < ActiveRecord::Migration[6.0]
         add_column :institutions, :cnpj, :string
         add_index :institutions, :cnpj, unique: true
 
-        add_column :institutions, :type, :string
+        add_column :institutions, :institution_type, :string
         
         remove_column :institutions, :name 
         add_column :institutions, :fantasy_name, :string

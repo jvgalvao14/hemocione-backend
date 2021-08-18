@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'associations' do
-    it { is_expected.to have_many(:subscriptions) }
+    it { is_expected.to have_many(:actions) }
+    it { is_expected.to have_many(:addresses) }
   end
 
   describe 'validations' do
