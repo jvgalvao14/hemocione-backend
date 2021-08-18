@@ -6,7 +6,7 @@ class Institution < ApplicationRecord
     before_validation :set_cnpj_correctly
 
     validates :legal_name, :cnpj, presence: true
-    validates :legal_name, :cnpj, uniqueness: true 
+    validates :legal_name, :cnpj, uniqueness: { case_sensitive: false }
     validate :cnpj_must_be_valid
 
     def cnpj_must_be_valid

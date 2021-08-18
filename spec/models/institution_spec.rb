@@ -12,7 +12,7 @@ RSpec.describe Institution, type: :model do
 
         it { is_expected.to validate_presence_of(:legal_name) }
         it { is_expected.to validate_presence_of(:cnpj) }
-        it { is_expected.to validate_uniqueness_of(:legal_name) }
+        it { is_expected.to validate_uniqueness_of(:legal_name).case_insensitive }
         it { is_expected.to allow_value(Faker::CNPJ.numeric).for(:cnpj) }
         it { is_expected.not_to allow_value('00000000000000').for(:cnpj) }
         
