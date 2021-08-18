@@ -22,13 +22,13 @@ ActiveRecord::Schema.define(version: 2021_08_12_224443) do
     t.index ["user_id"], name: "index_actions_on_user_id"
   end
 
-  create_table "entity_adresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "entity_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "address_uuid"
     t.bigint "entity_id"
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["entity_id"], name: "index_entity_adresses_on_entity_id"
+    t.index ["entity_id"], name: "index_entity_addresses_on_entity_id"
   end
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
