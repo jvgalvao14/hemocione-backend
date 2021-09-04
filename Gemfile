@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
-gem 'bson_ext', '~> 1.5.1'
+gem 'bson_ext'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'cpf_cnpj'
