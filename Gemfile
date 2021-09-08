@@ -25,6 +25,8 @@ gem 'devise-jwt'
 gem 'api-pagination'
 gem 'kaminari'
 
+gem 'cancan'
+
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'cpf_faker'

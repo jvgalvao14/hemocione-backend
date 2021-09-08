@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :document_type, inclusion: { in: %w[CPF CNPJ] }
 
+  has_and_belongs_to_many :roles, join_table: :user_roles
   has_many :subscriptions
 
   private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_04_034352) do
+ActiveRecord::Schema.define(version: 2021_06_27_143918) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 2021_04_04_034352) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
+  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.boolean "donated", default: false
     t.bigint "user_id"
@@ -62,6 +68,13 @@ ActiveRecord::Schema.define(version: 2021_04_04_034352) do
     t.index ["event_id"], name: "index_subscriptions_on_event_id"
     t.index ["reservation_id"], name: "index_subscriptions_on_reservation_id"
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
+
+  create_table "user_roles", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "role_id", null: false
+    t.index ["role_id"], name: "index_user_roles_on_role_id"
+    t.index ["user_id"], name: "index_user_roles_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
@@ -100,4 +113,6 @@ ActiveRecord::Schema.define(version: 2021_04_04_034352) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_roles", "roles"
+  add_foreign_key "user_roles", "users"
 end

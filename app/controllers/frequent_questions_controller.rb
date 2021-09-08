@@ -3,6 +3,10 @@
 class FrequentQuestionsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
 
+  def current_ability
+    @current_ability ||= FrequentQuestionAbility.new(current_user)
+  end
+
   def index
     frequent_questions = paginate Faq::ReadService.call
     render json: serialized_frequent_questions(frequent_questions)
@@ -16,11 +20,15 @@ class FrequentQuestionsController < ApplicationController
   end
 
   def create
+    authorize!(:create, FrequentQuestion)
+
     frequent_question = Faq::CreateService.call(parameters)
     render json: frequent_question, status: :created
   end
 
   def update
+    authorize!(:update, FrequentQuestion)
+
     frequent_question = Faq::UpdateService.call(params.require(:id), parameters)
     return head :not_found if frequent_question.blank?
 
@@ -28,6 +36,8 @@ class FrequentQuestionsController < ApplicationController
   end
 
   def destroy
+    authorize!(:destroy, FrequentQuestion)
+
     Faq::DeleteService.call(params.require(:id))
 
     head :no_content

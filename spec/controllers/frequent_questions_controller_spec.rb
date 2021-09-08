@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+require 'shared/context/ability_context'
+require 'shared/examples/ability_examples'
 
 RSpec.describe FrequentQuestionsController, type: :controller do
   let(:user) { FactoryBot.create :user }
@@ -48,7 +50,12 @@ RSpec.describe FrequentQuestionsController, type: :controller do
       post :create, params: params
     end
 
-    it { expect(response).to have_http_status :created }
+    context 'with permission' do
+      include_context 'with admin user'
+      it { expect(response).to have_http_status :created }
+    end
+
+    it_behaves_like 'without permission'
   end
 
   describe '#update' do
@@ -60,8 +67,13 @@ RSpec.describe FrequentQuestionsController, type: :controller do
       put :update, params: params
     end
 
-    it { expect(response).to have_http_status :ok }
-    it { expect(JSON.parse(response.body)['question']).to eq('abc?') }
+    context 'with permission' do
+      include_context 'with admin user'
+      it { expect(response).to have_http_status :ok }
+      it { expect(JSON.parse(response.body)['question']).to eq('abc?') }
+    end
+
+    it_behaves_like 'without permission'
   end
 
   describe '#destroy' do
@@ -72,7 +84,12 @@ RSpec.describe FrequentQuestionsController, type: :controller do
       delete :destroy, params: { id: faq.id }
     end
 
-    it { expect(response).to have_http_status :no_content }
-    it { expect { faq.reload }.to raise_error(ActiveRecord::RecordNotFound) }
+    context 'with permission' do
+      include_context 'with admin user'
+      it { expect(response).to have_http_status :no_content }
+      it { expect { faq.reload }.to raise_error(ActiveRecord::RecordNotFound) }
+    end
+
+    it_behaves_like 'without permission'
   end
 end
